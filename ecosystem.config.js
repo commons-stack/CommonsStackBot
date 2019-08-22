@@ -6,7 +6,7 @@ module.exports = {
   apps: [
     // First application
     {
-      name: 'giveth-bot',
+      name: 'commonsstackbot',
       script: './index.js',
       log_date_format: 'YYYY-MM-DD HH:mm',
       env: {
