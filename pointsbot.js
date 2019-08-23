@@ -2,7 +2,6 @@ const dayjs = require('dayjs')
 const {
   point_types,
   reason_seperators,
-  domains,
   max_points,
   sheet_id,
   sheet_tab_name,
@@ -20,7 +19,6 @@ exports.handlePointGiving = function(
   client,
   notificationFunction
 ) {
-  //client.setPresence('online')
   let message = input.text
   const roomId = input.chat.id
   const user = input.from.username
@@ -54,12 +52,7 @@ exports.handlePointGiving = function(
     )
   } else if (command == '!sendmilestones') {
     if (milestone_automation_trigger_users.includes(user)) {
-      handleMilestoneAutomation(
-        input,
-        notificationFunction,
-        client,
-        privateRooms
-      )
+      handleMilestoneAutomation(notificationFunction, client, privateRooms)
       client.sendMessage(
         roomId,
         `Sent notifications of milestone creation to all eligible users!`
@@ -70,16 +63,9 @@ exports.handlePointGiving = function(
   }
 }
 
-function handleMilestoneAutomation(
-  msg,
-  notificationFunc,
-  client,
-  privateRooms
-) {
+function handleMilestoneAutomation(notificationFunc, client, privateRooms) {
   for (var user in privateRooms) {
     var values = privateRooms[user]
-    console.log(user)
-    console.log(values)
     var now = new Date()
     if (
       values.lastMonthNotified != now.getMonth() &&
@@ -104,7 +90,6 @@ function handleMilestoneAutomation(
         month: 'long',
         day: 'numeric',
       })
-      console.log(new Date(now.getFullYear(), 13, 7))
       notificationFunc(
         milestone_notification_msg
           .replace('%LINK%', url)
@@ -131,22 +116,10 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
     'gi'
   )
 
-  console.log(msg)
-
   if (msg.from.is_bot) {
     // we sent the message.
     return
   }
-
-  /**if (event.getContent().formatted_body) {
-    message = event.getContent().formatted_body
-    if (message.includes('</blockquote>')) {
-      message = message = message.split('</blockquote>')[1]
-    }
-  } else if (message.trim()[0] == '>') {
-    // quoting another user, skip the quoted part
-    message = message.split('\n\n')[1]
-  }**/
 
   let match
   do {
