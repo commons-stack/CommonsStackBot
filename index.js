@@ -1,10 +1,9 @@
 const fs = require('fs')
 const readline = require('readline')
 const { google } = require('googleapis')
-const sdk = require('matrix-js-sdk')
+const TelegramBot = require('node-telegram-bot-api')
 const pointsBot = require('./pointsbot.js')
-const chatBot = require('./chatbot.js')
-var schedule = require('node-schedule')
+const markdown = require('markdown').markdown
 let privateRooms = {}
 
 // If modifying these scopes, delete credentials.json.
@@ -77,70 +76,60 @@ function getNewToken(oAuth2Client, callback) {
   })
 }
 
-const client = sdk.createClient('https://matrix.org')
-
 function authenticated(auth) {
   fs.readFile('bot_credentials.json', (err, content) => {
     if (err) return console.log('Error loading bot credentials', err)
 
     content = JSON.parse(content)
 
-    client.login(
-      'm.login.password',
-      {
-        user: content.username,
-        password: content.password,
-      },
-      (err, data) => {
-        if (err) {
-          console.log('Error:', err)
-        }
+    const bot = new TelegramBot(content.token, { polling: true })
 
-        console.log(`Logged in ${data.user_id} on device ${data.device_id}`)
-        const client = sdk.createClient({
-          baseUrl: 'https://matrix.org',
-          accessToken: data.access_token,
-          userId: data.user_id,
-          deviceId: data.device_id,
-        })
+    console.log('Logged in')
 
-        client.on('Room.timeline', (event, room, toStartOfTimeline) => {
-          chatBot.handleCalendar(event, room, toStartOfTimeline, client)
-          chatBot.handleNewMember(
-            event,
-            room,
-            toStartOfTimeline,
-            client,
-            privateRooms
-          )
-          pointsBot.handlePointGiving(
-            auth,
-            event,
-            room,
-            toStartOfTimeline,
-            client,
-            privateRooms,
-            chatBot.sendInternalMessage
-          )
-          chatBot.handleResponse(
-            event,
-            room,
-            toStartOfTimeline,
-            client,
-            privateRooms
-          )
-          savePrivateRooms()
-        })
+    bot.on('polling_error', err => console.log(err))
 
-        client.startClient(0)
+    bot.on('new_chat_members', msg => {
+      msg.new_chat_members.forEach(user => {
+        checkUser({ from: { id: user.id, username: user.username } })
+      })
+    })
 
-        var scheduledMessageJob = schedule.scheduleJob(
-          '1 0 * * *',
-          chatBot.handleScheduledMessages(client)
-        )
-      }
-    )
+    bot.on('message', msg => {
+      checkUser(msg)
+      pointsBot.handlePointGiving(
+        auth,
+        msg,
+        privateRooms,
+        bot,
+        sendInternalMessage
+      )
+      savePrivateRooms()
+    })
   })
+}
+
+function checkUser(msg) {
+  if (!Object.values(privateRooms).some(u => u.room === msg.from.id && u.username === msg.from.username)) {
+    privateRooms[msg.from.username] = { room: msg.from.id, username: msg.from.username }
+  }
+}
+
+function sendInternalMessage(msg, user, client, callback) {
+  sendMessage(msg, user, client, privateRooms[user].room)
+  if (callback) {
+    callback()
+  }
+}
+
+function sendMessage(msg, user, client, room) {
+  if (msg.length > 0) {
+    msg = msg.replace(/^ +| +$/gm, '')
+    let html = markdown.toHTML(msg)
+    msg = msg.replace('%USER%', user)
+    html = html.replace('%USER%', user)
+    //client.sendMessage(room, html, { parse_mode: 'HTML' })
+    client.sendMessage(room, msg)
+  }
 }
 
 function savePrivateRooms() {

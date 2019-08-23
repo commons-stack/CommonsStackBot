@@ -15,69 +15,63 @@ const { google } = require('googleapis')
 
 exports.handlePointGiving = function(
   auth,
-  event,
-  room,
-  toStartOfTimeline,
-  client,
+  input,
   privateRooms,
+  client,
   notificationFunction
 ) {
-  if (event.getType() === 'm.room.message' && toStartOfTimeline === false) {
-    client.setPresence('online')
-    let message = event.getContent().body
-    const roomId = room.roomId
-    const user = event.getSender()
+  //client.setPresence('online')
+  let message = input.text
+  const roomId = input.chat.id
+  const user = input.from.username
 
-    if (message.trim()[0] == '>') {
-      // quoting another user, skip the quoted part
-      message = message.split('\n\n')[1]
-    }
+  if (message.trim()[0] == '>') {
+    // quoting another user, skip the quoted part
+    message = message.split('\n\n')[1]
+  }
 
-    // Support for "! dish" command
-    if (message[1] === ' ') {
-      message = message.replace(' ', '')
-    }
+  // Support for "! dish" command
+  if (message[1] === ' ') {
+    message = message.replace(' ', '')
+  }
 
-    const msg = message.split(' ')
-    const command = msg[0].toLowerCase()
+  const msg = message.split(' ')
+  const command = msg[0].toLowerCase()
 
-    if (command == '!help') {
-      client.sendTextMessage(
-        roomId,
-        'dish points using the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] [' +
-          reason_seperators.toString().replace(/,/g, '/') +
-          '] [reason]'
+  if (command == '!help') {
+    client.sendMessage(
+      roomId,
+      'dish points using the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] [' +
+        reason_seperators.toString().replace(/,/g, '/') +
+        '] [reason]'
+    )
+  } else if (command == '!dish') {
+    handleDish(input, privateRooms, notificationFunction, client, auth)
+  } else if (command == '!sheet') {
+    client.sendMessage(
+      roomId,
+      `the rewardDAO sheet can be found here: https://docs.google.com/spreadsheets/d/${sheet_id}`
+    )
+  } else if (command == '!sendmilestones') {
+    if (milestone_automation_trigger_users.includes(user)) {
+      handleMilestoneAutomation(
+        input,
+        notificationFunction,
+        client,
+        privateRooms
       )
-    } else if (command == '!dish') {
-      handleDish(event, room, privateRooms, notificationFunction, client, auth)
-    } else if (command == '!sheet') {
-      client.sendTextMessage(
+      client.sendMessage(
         roomId,
-        `the rewardDAO sheet can be found here: https://docs.google.com/spreadsheets/d/${sheet_id}`
+        `Sent notifications of milestone creation to all eligible users!`
       )
-    } else if (command == '!sendmilestones') {
-      if (milestone_automation_trigger_users.includes(user)) {
-        handleMilestoneAutomation(
-          event,
-          room,
-          notificationFunction,
-          client,
-          privateRooms
-        )
-        client.sendTextMessage(
-          roomId,
-          `Sent notifications of milestone creation to all eligible users!`
-        )
-      } else {
-        client.sendTextMessage(roomId, `Sorry, you're not allowed to do that.`)
-      }
+    } else {
+      client.sendMessage(roomId, `Sorry, you're not allowed to do that.`)
     }
   }
 }
 
 function handleMilestoneAutomation(
-  event,
-  room,
+  msg,
   notificationFunc,
   client,
   privateRooms
@@ -118,7 +112,6 @@ function handleMilestoneAutomation(
           .replace('%DEADLINE%', deadline),
         user,
         client,
-        privateRooms,
         null
       )
       privateRooms[user].lastMonthNotified = now.getMonth()
@@ -127,8 +120,8 @@ function handleMilestoneAutomation(
   }
 }
 
-function handleDish(event, room, privateRooms, notificationFunc, client, auth) {
-  let message = event.getContent().body
+function handleDish(msg, privateRooms, notificationFunc, client, auth) {
+  let message = msg.text
   let matched = false
 
   let regex = new RegExp(
@@ -138,12 +131,14 @@ function handleDish(event, room, privateRooms, notificationFunc, client, auth) {
     'gi'
   )
 
-  if (event.getSender() == `@${process.env.BOT_USER}:matrix.org`) {
+  console.log(msg)
+
+  if (msg.from.is_bot) {
     // we sent the message.
     return
   }
 
-  if (event.getContent().formatted_body) {
+  /**if (event.getContent().formatted_body) {
     message = event.getContent().formatted_body
     if (message.includes('</blockquote>')) {
       message = message = message.split('</blockquote>')[1]
@@ -151,15 +146,14 @@ function handleDish(event, room, privateRooms, notificationFunc, client, auth) {
   } else if (message.trim()[0] == '>') {
     // quoting another user, skip the quoted part
     message = message.split('\n\n')[1]
-  }
+  }**/
 
   let match
   do {
     match = regex.exec(message)
     if (match) {
       tryDish(
-        event,
-        room,
+        msg,
         client,
         auth,
         privateRooms,
@@ -173,16 +167,15 @@ function handleDish(event, room, privateRooms, notificationFunc, client, auth) {
     }
   } while (match)
   if (!matched) {
-    client.sendTextMessage(
-      room.roomId,
+    client.sendMessage(
+      msg.chat.id,
       'ERROR, please use the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] for [reason]'
     )
   }
 }
 
 function tryDish(
-  event,
-  room,
+  msg,
   client,
   auth,
   privateRooms,
@@ -193,7 +186,7 @@ function tryDish(
   reason
 ) {
   try {
-    const sender = event.getSender()
+    const sender = msg.from.username
     const amount = new BigNumber(nPoints)
     type = type.toUpperCase()
 
@@ -237,7 +230,7 @@ function tryDish(
     users.forEach(user => {
       user = user.trim()
       let { userInRoom, receiver, display_name, multipleUsers } = findReceiver(
-        room,
+        privateRooms,
         user
       ) // try to find user
 
@@ -262,7 +255,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
         throw userError
       }
       const date = dayjs().format('DD-MMM-YYYY')
-      const link = `https://riot.im/app/#/room/${room.roomId}/${event.getId()}`
+      const link = `https://t.me/${msg.chat.username}/${msg.message_id}`
       values.push([
         receiver,
         sender,
@@ -290,8 +283,8 @@ either add this user to the room, or try again using the format @[userId]:[domai
         }
 
         values.forEach(value => {
-          client.sendTextMessage(
-            room.roomId,
+          client.sendMessage(
+            msg.chat.id,
             `${value[1]} dished ${value[3].split('.')[0]} ${
               value[4]
             } points to ${value[0]}`
@@ -302,7 +295,6 @@ either add this user to the room, or try again using the format @[userId]:[domai
               .replace('%ROOM%', value[6]),
             value[0],
             client,
-            privateRooms,
             null
           )
           privateRooms[value[0]].lastDishMonth = new Date().getMonth()
@@ -310,6 +302,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
       }
     )
   } catch (err) {
+    console.error(err)
     const MANUAL_ERROR_CODES = [
       'POINTS_NOT_NUMBER',
       'USER_DOES_NOT_EXIST',
@@ -318,15 +311,14 @@ either add this user to the room, or try again using the format @[userId]:[domai
       'POINTS_ARE_NEGATIVE_OR_ZERO',
       'POINTS_OVER_MAXIMUM',
     ]
-    console.log(err)
     if (MANUAL_ERROR_CODES.includes(err.code)) {
-      client.sendTextMessage(
-        room.roomId,
+      client.sendMessage(
+        msg.chat.id,
         'ERROR: ' + err.message + "\nType '!help' for more information."
       )
     } else {
-      client.sendTextMessage(
-        room.roomId,
+      client.sendMessage(
+        msg.chat.id,
         'ERROR, please use the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] for [reason]'
       )
     }
@@ -334,25 +326,29 @@ either add this user to the room, or try again using the format @[userId]:[domai
 }
 
 // Try to intelligently format the receiver field
-function findReceiver(room, receiver) {
+function findReceiver(privateRooms, receiver) {
   if (receiver.startsWith('<a href="https://matrix.to/#/')) {
     receiver = receiver.substring(29, receiver.indexOf('">'))
   }
 
-  if (receiver[0] != '@') {
-    receiver = `@${receiver}`
+  if (receiver[0] == '@') {
+    receiver = receiver.substr(1)
   }
+
+  /**if (receiver[0] != '@') {
+    receiver = `@${receiver}`
+  }**/
 
   // defaults
   let userInRoom = false
   let multipleUsers = false
   let display_name = ''
 
-  if (room.getMember(receiver) != null) {
+  if (privateRooms[receiver] != null) {
     userInRoom = true
   }
 
-  if (receiver.split(':').length < 2 && !userInRoom) {
+  /**if (receiver.split(':').length < 2 && !userInRoom) {
     for (let domain of domains) {
       if (room.getMember(`${receiver}:${domain}`) != null) {
         receiver = `${receiver}:${domain}`
@@ -369,7 +365,7 @@ function findReceiver(room, receiver) {
         userInRoom = true
       }
     }
-  }
+  }**/
   return {
     userInRoom,
     receiver,
