@@ -108,9 +108,17 @@ function authenticated(auth) {
   })
 }
 
+// Make sure that every username-id pair is noted down
 function checkUser(msg) {
-  if (!Object.values(privateRooms).some(u => u.room === msg.from.id && u.username === msg.from.username)) {
-    privateRooms[msg.from.username] = { room: msg.from.id, username: msg.from.username }
+  if (
+    !Object.values(privateRooms).some(
+      u => u.room === msg.from.id && u.username === msg.from.username
+    )
+  ) {
+    privateRooms[msg.from.username] = {
+      room: msg.from.id,
+      username: msg.from.username,
+    }
   }
 }
 
@@ -126,9 +134,11 @@ function sendMessage(msg, user, client, room) {
     msg = msg.replace(/^ +| +$/gm, '')
     let html = markdown.toHTML(msg)
     msg = msg.replace('%USER%', user)
-    html = html.replace('%USER%', user)
-    //client.sendMessage(room, html, { parse_mode: 'HTML' })
-    client.sendMessage(room, msg)
+    html = html
+      .replace('%USER%', user)
+      .replace(/<p>/g, '\n')
+      .replace(/<\/p>/g, '')
+    client.sendMessage(room, html, { parse_mode: 'HTML' })
   }
 }
 
