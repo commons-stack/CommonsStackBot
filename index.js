@@ -95,6 +95,7 @@ function authenticated(auth) {
       msg.new_chat_members.forEach(user => {
         checkUser({ from: { id: user.id, username: user.username } })
       })
+      savePrivateRooms()
     })
 
     bot.on('message', msg => {
