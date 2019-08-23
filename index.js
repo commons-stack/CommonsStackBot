@@ -17,6 +17,9 @@ fs.readFile('client_secret.json', (err, content) => {
   authorize(JSON.parse(content), authenticated)
 })
 
+// Make sure we have privateRooms.json
+fs.writeFile('./privateRooms.json', '{}', { flag: 'wx' }, function(err) {})
+
 fs.readFile('./privateRooms.json', 'utf8', function(err, data) {
   if (!err) {
     privateRooms = JSON.parse(data)
