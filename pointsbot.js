@@ -23,11 +23,6 @@ exports.handlePointGiving = function(
   const roomId = input.chat.id
   const user = input.from.username
 
-  if (input.chat.type === 'private') {
-    client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
-    return
-  }
-
   if (message.trim()[0] == '>') {
     // quoting another user, skip the quoted part
     message = message.split('\n\n')[1]
@@ -49,6 +44,10 @@ exports.handlePointGiving = function(
         '] [reason]'
     )
   } else if (command == '!dish') {
+    if (input.chat.type === 'private') {
+      client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
+      return
+    }
     handleDish(input, privateRooms, notificationFunction, client, auth)
   } else if (command == '!sheet') {
     client.sendMessage(
