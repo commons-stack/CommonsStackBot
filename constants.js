@@ -3,18 +3,7 @@
 // ]
 
 // Allowed point types
-module.exports.point_types = [
-  'GOV',
-  'DAPP',
-  'SC',
-  'COMM',
-  'UNICORN',
-  'ARAGON',
-  'FLURKEL',
-  'ETHKAN',
-  'DAPPNODE',
-  'SIGNALING',
-]
+module.exports.point_types = ['CONTRIBUTOR']
 
 module.exports.reason_seperators = ['for', 'over', 'because']
 
@@ -22,8 +11,8 @@ module.exports.max_points = 10000
 
 module.exports.sheet_id =
   process.env.NODE_ENV === 'production'
-    ? '12cblUYuYq4NwZX7JdRo0-NWnrOxlDy-XCbvF3ugzb2c'
-    : '10sU4UNlCq8fZ3f4zouoq945zTScw27uUV1LU0siA1YA'
+    ? '1Qxgjg4YxTBNIIwIEm3WGDcmGs_8Klv-UzztQCzYLvNA'
+    : '1p6_zA792aeKnEJ2iudIjeVFmPTFgnj-znoH6mQFzpw8'
 module.exports.sheet_tab_name = 'PointsBot (DONT RENAME!)!A1:F1'
 
 module.exports.dish_notification_msg =
