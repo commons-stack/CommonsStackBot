@@ -16,10 +16,10 @@ module.exports.sheet_id =
 module.exports.sheet_tab_name = 'PointsBot (DONT RENAME!)!A1:F1'
 
 module.exports.dish_notification_msg =
-  "Congratulations! Your contribution to Giveth has been recognized by %DISHER% [here](%ROOM%) and you have received Reward Points that can be collected as Eth.\
-\n\nPlease join the [Contributors](https://riot.im/app/#/room/#giveth-contributors:matrix.org) Room and see the [Contributors Guide](https://wiki.giveth.io/dac/contributors-guide/) on our Wiki to learn more\
-\n\nDo act soon, these points don’t last forever. Unclaimed ETH rolls over at month end! To make a milestone and get that Eth, go to the [RewardDAO Campaign](https://beta.giveth.io/campaigns/5b3d9746329bc64ae74d1424) for the next steps and create a Profile on our Beta platform if you haven't already.\
-\n\nTHANK YOU for being here from the Giveth Unicorns (and our fabulous PointsBot)!"
+  'Congratulations! If you’re seeing this message, it’s likely because you’ve been dished points! Your contribution to the Commons Stack has been recognized [here](https://t.me/CommonsStack) and you have received Contributor Points that signify reputation in the Commons Stack. They can turn into CStack tokens, giving you status as part of the Trusted Seed that can hatch Commons.\
+  \n\nPlease see the [Contributors Guide](https://app.gitbook.com/@commons-stack/s/wiki/contributors-guide) on our Wiki to learn more.\
+  \n\nTo be eligible to receive tokens, you must apply to be a member of the Commons Stack and be accepted. To apply, fill the form [here](http://commonsstack.org/apply).\
+  \n\nTHANK YOU for being here from the Commons Stack Association (and our fabulous PraiseBot)'
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 

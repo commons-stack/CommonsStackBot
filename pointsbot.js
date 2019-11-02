@@ -64,7 +64,13 @@ exports.handlePointGiving = function(
     } else {
       client.sendMessage(roomId, `Sorry, you're not allowed to do that.`)
     }
+  } else if (command === '/start' && isPrivateRoom(user, roomId)) {
+    client.sendMessage(roomId, dish_notification_msg)
   }
+}
+
+function isPrivateRoom(username, id) {
+  return privateRooms[username].room === id
 }
 
 function handleMilestoneAutomation(notificationFunc, client, privateRooms) {
@@ -264,7 +270,9 @@ either add this user to the room, or try again using the format @[userId]:[domai
             msg.chat.id,
             `${value[1]} dished ${value[3].split('.')[0]} ${
               value[4]
-            } points to ${value[0]}`
+            } points to ${
+              value[0]
+            }\n In order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need`
           )
           notificationFunc(
             dish_notification_msg
