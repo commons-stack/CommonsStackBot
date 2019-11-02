@@ -272,7 +272,8 @@ either add this user to the room, or try again using the format @[userId]:[domai
               value[4]
             } points to ${
               value[0]
-            }\n In order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need`
+            }\n In order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need`,
+            { parse_mode: 'Markdown' }
           )
           notificationFunc(
             dish_notification_msg
