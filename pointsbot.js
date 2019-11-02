@@ -266,15 +266,17 @@ either add this user to the room, or try again using the format @[userId]:[domai
         }
 
         values.forEach(value => {
-          client.sendMessage(
-            msg.chat.id,
-            `${value[1]} dished ${value[3].split('.')[0]} ${
-              value[4]
-            } points to ${
-              value[0]
-            }\n In order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need`,
-            { parse_mode: 'Markdown' }
-          )
+          let text = `${value[1]} dished ${value[3].split('.')[0]} ${
+            value[4]
+          } points to @${value[0]}`
+          if (!privateRooms[value[0]].lastDishMonth) {
+            text +=
+              "\nIn order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
+          } else {
+            text +=
+              "\nIn order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
+          }
+          client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
           notificationFunc(
             dish_notification_msg
               .replace('%DISHER%', value[1])
