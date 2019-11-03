@@ -39,7 +39,7 @@ exports.handlePointGiving = function(
   if (command == '!help') {
     client.sendMessage(
       roomId,
-      'dish points using the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] [' +
+      'dish using the following format:\n!dish [#of praise] [type of praise] to [handle, handle, handle] [' +
         reason_seperators.toString().replace(/,/g, '/') +
         '] [reason]'
     )
@@ -120,7 +120,7 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
   let matched = false
 
   let regex = new RegExp(
-    '!\\s*dish\\s+(\\S+)\\s+(\\S+)\\s+points\\s+to\\s+(.+?)\\s+(' +
+    '!\\s*dish\\s+(\\S+)\\s+(\\S+)\\s+to\\s+(.+?)\\s+(' +
       reason_seperators.toString().replace(/,/g, '|') +
       ')\\s+([^\\n]+)',
     'gi'
@@ -152,7 +152,7 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
   if (!matched) {
     client.sendMessage(
       msg.chat.id,
-      'ERROR, please use the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] for [reason]'
+      'ERROR, please use the following format:\n!dish [#of praise] [type of praise] to [handle, handle, handle] for [reason]'
     )
   }
 }
@@ -175,7 +175,7 @@ function tryDish(
 
     if (amount.isNaN()) {
       const pointError = new Error(
-        'Invalid number of points dished. Please enter a valid number and try again'
+        'Invalid number of praise dished. Please enter a valid number and try again'
       )
       pointError.code = 'POINTS_NOT_NUMBER'
       throw pointError
@@ -183,7 +183,7 @@ function tryDish(
 
     if (amount.isLessThan(1)) {
       const pointError = new Error(
-        "You can't dish negative or zero amount of points!"
+        "You can't dish negative or zero amount of praise!"
       )
       pointError.code = 'POINTS_ARE_NEGATIVE_OR_ZERO'
       throw pointError
@@ -191,7 +191,7 @@ function tryDish(
 
     if (amount.isGreaterThan(max_points)) {
       const pointError = new Error(
-        `You can't dish more than ${max_points} points each time!`
+        `You can't dish more than ${max_points} praise each time!`
       )
       pointError.code = 'POINTS_OVER_MAXIMUM'
       throw pointError
@@ -199,7 +199,7 @@ function tryDish(
 
     if (!point_types.includes(type)) {
       const typeError = new Error(
-        `Invalid point type '${type}'. Please use one of ${point_types}.`
+        `Invalid type '${type}'. Please use one of ${point_types}.`
       )
       typeError.code = 'POINT_TYPE_DOES_NOT_EXIST'
       throw typeError
@@ -268,13 +268,13 @@ either add this user to the room, or try again using the format @[userId]:[domai
         values.forEach(value => {
           let text = `${value[1]} dished ${value[3].split('.')[0]} ${
             value[4]
-          } points to @${value[0]}`
+          } praise to @${value[0]}`
           if (!privateRooms[value[0]].lastDishMonth) {
             text +=
-              "\nIn order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
+              "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
           } else {
             text +=
-              "\nIn order to claim these points, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
+              "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
           }
           client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
           notificationFunc(
@@ -307,7 +307,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
     } else {
       client.sendMessage(
         msg.chat.id,
-        'ERROR, please use the following format:\n!dish [#of points] [type of points] points to [handle, handle, handle] for [reason]'
+        'ERROR, please use the following format:\n!dish [#of praise] [type of praise] to [handle, handle, handle] for [reason]'
       )
     }
   }
