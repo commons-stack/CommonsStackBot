@@ -39,7 +39,7 @@ exports.handlePointGiving = function(
   if (command == '!help') {
     client.sendMessage(
       roomId,
-      'dish using the following format:\n!dish [#of praise] [type of praise] to [handle, handle, handle] [' +
+      'dish using the following format:\n!dish [type of praise] to [handle, handle, handle] [' +
         reason_seperators.toString().replace(/,/g, '/') +
         '] [reason]'
     )
@@ -120,7 +120,7 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
   let matched = false
 
   let regex = new RegExp(
-    '!\\s*dish\\s+(\\S+)\\s+(\\S+)\\s+to\\s+(.+?)\\s+(' +
+    '!\\s*dish\\s+(\\S+)\\s+to\\s+(.+?)\\s+(' +
       reason_seperators.toString().replace(/,/g, '|') +
       ')\\s+([^\\n]+)',
     'gi'
@@ -141,10 +141,10 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
         auth,
         privateRooms,
         notificationFunc,
+        1,
         match[1],
         match[2],
-        match[3],
-        match[5]
+        match[4]
       )
       matched = true
     }
@@ -152,7 +152,7 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
   if (!matched) {
     client.sendMessage(
       msg.chat.id,
-      'ERROR, please use the following format:\n!dish [#of praise] [type of praise] to [handle, handle, handle] for [reason]'
+      'ERROR, please use the following format:\n!dish [type of praise] to [handle, handle, handle] for [reason]'
     )
   }
 }
@@ -266,9 +266,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
         }
 
         values.forEach(value => {
-          let text = `${value[1]} dished ${value[3].split('.')[0]} ${
-            value[4]
-          } to @${value[0]}`
+          let text = `${value[1]} dished ${value[4]} to @${value[0]}`
           if (!privateRooms[value[0]].lastDishMonth) {
             text +=
               "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
@@ -307,7 +305,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
     } else {
       client.sendMessage(
         msg.chat.id,
-        'ERROR, please use the following format:\n!dish [#of praise] [type of praise] to [handle, handle, handle] for [reason]'
+        'ERROR, please use the following format:\n!dish [type of praise] to [handle, handle, handle] for [reason]'
       )
     }
   }
