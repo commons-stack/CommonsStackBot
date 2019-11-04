@@ -64,13 +64,11 @@ exports.handlePointGiving = function(
     } else {
       client.sendMessage(roomId, `Sorry, you're not allowed to do that.`)
     }
-  } else if (command === '/start' && isPrivateRoom(user, roomId)) {
-    client.sendMessage(roomId, dish_notification_msg)
+  } else if (command === '/start' && privateRooms[user].room === roomId) {
+    client.sendMessage(roomId, dish_notification_msg, {
+      parse_mode: 'Markdown',
+    })
   }
-}
-
-function isPrivateRoom(username, id) {
-  return privateRooms[username].room === id
 }
 
 function handleMilestoneAutomation(notificationFunc, client, privateRooms) {
