@@ -2,6 +2,16 @@
 // module.exports.userList = [
 // ]
 
+// Dishers
+module.exports.dishers = [
+  'GriffGreen',
+  'loie_giveth',
+  'krrisis',
+  'jeffemmett',
+  'mzargham',
+  'frederikbolding',
+]
+
 // Allowed point types
 module.exports.point_types = ['PRAISE']
 

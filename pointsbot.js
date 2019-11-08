@@ -1,5 +1,6 @@
 const dayjs = require('dayjs')
 const {
+  dishers,
   point_types,
   reason_seperators,
   max_points,
@@ -48,11 +49,15 @@ exports.handlePointGiving = function(
       client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
       return
     }
+    if (!dishers.includes(user)) {
+      client.sendMessage(roomId, `You aren't permitted to dish praise.`)
+      return
+    }
     handleDish(input, privateRooms, notificationFunction, client, auth)
   } else if (command == '!sheet') {
     client.sendMessage(
       roomId,
-      `the rewardDAO sheet can be found here: https://docs.google.com/spreadsheets/d/${sheet_id}`
+      `the Praise sheet can be found here: https://docs.google.com/spreadsheets/d/${sheet_id}`
     )
   } else if (command == '!sendmilestones') {
     if (milestone_automation_trigger_users.includes(user)) {
