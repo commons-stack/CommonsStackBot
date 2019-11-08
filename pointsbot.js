@@ -269,7 +269,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
         }
 
         values.forEach(value => {
-          let text = `${value[1]} dished ${value[4]} to @${value[0]}`
+          let text = `${value[1]} dished ${value[3]} to @${value[0]}`
           if (!privateRooms[value[0]].lastDishMonth) {
             text +=
               "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
