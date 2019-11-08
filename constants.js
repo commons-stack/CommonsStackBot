@@ -23,7 +23,7 @@ module.exports.sheet_id =
   process.env.NODE_ENV === 'production'
     ? '1Qxgjg4YxTBNIIwIEm3WGDcmGs_8Klv-UzztQCzYLvNA'
     : '1p6_zA792aeKnEJ2iudIjeVFmPTFgnj-znoH6mQFzpw8'
-module.exports.sheet_tab_name = 'PointsBot (DONT RENAME!)!A1:F1'
+module.exports.sheet_tab_name = 'PraiseBot!A1:F1'
 
 module.exports.dish_notification_msg =
   'Congratulations! If you’re seeing this message, it’s likely because you’ve been dished Praise! Your contribution to the Commons Stack has been recognized [here](https://t.me/CommonsStack) and you have received Praise, which signifies reputation in the Commons Stack. This Praise can turn into CSTK tokens, giving you status as part of the Trusted Seed that can hatch Commons.\
