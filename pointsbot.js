@@ -246,10 +246,10 @@ either add this user to the room, or try again using the format @[userId]:[domai
         receiver,
         sender,
         reason,
-        amount.toFormat(2),
+        //amount.toFormat(2),
         type,
         date,
-        link,
+        //link,
         display_name,
       ])
     })
