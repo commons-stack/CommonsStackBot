@@ -29,7 +29,7 @@ module.exports.dish_notification_msg =
   'Congratulations! If you’re seeing this message, it’s likely because you’ve been dished Praise! Your contribution to the Commons Stack has been recognized [here](https://t.me/CommonsStack) and you have received Praise, which signifies reputation in the Commons Stack. This Praise can turn into CSTK tokens, giving you status as part of the Trusted Seed that can hatch Commons.\
   \n\nPlease see the [Contributors Guide](https://wiki.commonsstack.org/contributors-guide) on our Wiki to learn more.\
   \n\nTo be eligible to receive tokens, you must apply to be a member of the Commons Stack and be accepted. To apply, fill the form [here](http://commonsstack.org/apply).\
-  \n\n<b>Thank you<\b> for being here from the Commons Stack'
+  \n\n**Thank you** for being here from the Commons Stack'
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 
