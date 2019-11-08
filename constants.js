@@ -3,7 +3,7 @@
 // ]
 
 // Allowed point types
-module.exports.point_types = ['Praise']
+module.exports.point_types = ['PRAISE']
 
 module.exports.reason_seperators = ['for', 'over', 'because']
 
