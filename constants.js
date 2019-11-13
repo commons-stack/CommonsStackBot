@@ -26,10 +26,11 @@ module.exports.sheet_id =
 module.exports.sheet_tab_name = 'PraiseBot!A1:F1'
 
 module.exports.dish_notification_msg =
-  'Congratulations! If you’re seeing this message, it’s likely because you’ve been dished Praise! Your contribution to the Commons Stack has been recognized [here](https://t.me/CommonsStack) and you have received Praise, which signifies reputation in the Commons Stack. This Praise can turn into CSTK tokens, giving you status as part of the Trusted Seed that can hatch Commons.\
-  \n\nPlease see the [Contributors Guide](https://wiki.commonsstack.org/contributors-guide) on our Wiki to learn more.\
-  \n\nTo be eligible to receive tokens, you must apply to be a member of the Commons Stack and be accepted. To apply, fill the form [here](http://commonsstack.org/apply).\
-  \n\n**Thank you** for being here from the Commons Stack'
+  'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise may turn into CSTK tokens at the end of the month, giving you reputation as part of our Trusted Seed.\
+  \n\nPlease see the [Contributors Guide](https://wiki.commonsstack.org/contributors-guide) on our Wiki to learn more about Praise and the Trusted Seed.\
+  \n\nTo be eligible to receive tokens, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply).\
+  \n\n**Thank you** for being here, from all of us at the Commons Stack'
+
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 
