@@ -89,15 +89,15 @@ function checkUser(msg) {
       u => u.room === msg.from.id && u.username === msg.from.username
     )
   ) {
-    privateRooms[msg.from.username] = {
+    privateRooms[msg.from.username.toLowerCase()] = {
       room: msg.from.id,
-      username: msg.from.username,
+      username: msg.from.username.toLowerCase(),
     }
   }
 }
 
 function sendInternalMessage(msg, user, client, callback) {
-  sendMessage(msg, user, client, privateRooms[user].room)
+  sendMessage(msg, user, client, privateRooms[user.toLowerCase()].room)
   if (callback) {
     callback()
   }

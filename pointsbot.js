@@ -47,7 +47,7 @@ exports.handlePointGiving = function(
   } else if (command == '!dish') {
     if (input.chat.type === 'private') {
       client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
-      return
+      //return
     }
     if (!dishers.includes(user)) {
       client.sendMessage(roomId, `You aren't permitted to dish praise.`)
@@ -69,7 +69,7 @@ exports.handlePointGiving = function(
     } else {
       client.sendMessage(roomId, `Sorry, you're not allowed to do that.`)
     }
-  } else if (command === '/start' && privateRooms[user].room === roomId) {
+  } else if (command === '/start' && privateRooms[user.toLowerCase()].room === roomId) {
     client.sendMessage(roomId, dish_notification_msg, {
       parse_mode: 'Markdown',
     })
@@ -78,7 +78,7 @@ exports.handlePointGiving = function(
 
 function handleMilestoneAutomation(notificationFunc, client, privateRooms) {
   for (var user in privateRooms) {
-    var values = privateRooms[user]
+    var values = privateRooms[user.toLowerCase()]
     var now = new Date()
     if (
       values.lastMonthNotified != now.getMonth() &&
@@ -112,7 +112,7 @@ function handleMilestoneAutomation(notificationFunc, client, privateRooms) {
         client,
         null
       )
-      privateRooms[user].lastMonthNotified = now.getMonth()
+      privateRooms[user.toLowerCase()].lastMonthNotified = now.getMonth()
       //privateRooms[milestone[0]].lastMonthNotified = now.getMonth()
     }
   }
@@ -228,20 +228,18 @@ function tryDish(
       }
 
       if (multipleUsers) {
-        const userError = new Error(`There are multiple users with the name '${receiver}' in this room.
-please specify the domain name of the user using the format @[userId]:[domain]`)
+        const userError = new Error(`There are multiple users with the name '${receiver}' in this room.`)
         userError.code = 'USER_MULTIPLE'
         throw userError
       }
 
       if (!userInRoom) {
-        const userError = new Error(`Username '${receiver}' does not exist in this room.
-either add this user to the room, or try again using the format @[userId]:[domain]`)
+        const userError = new Error(`Username '${receiver}' does not exist in this room.`)
         userError.code = 'USER_DOES_NOT_EXIST'
         throw userError
       }
       const date = dayjs().format('DD-MMM-YYYY')
-      const link = `https://t.me/${msg.chat.username}/${msg.message_id}`
+      //const link = `https://t.me/${msg.chat.username}/${msg.message_id}`
       values.push([
         receiver,
         sender,
@@ -270,13 +268,15 @@ either add this user to the room, or try again using the format @[userId]:[domai
 
         values.forEach(value => {
           let text = `${value[1]} dished ${value[3]} to @${value[0]}`
-          if (!privateRooms[value[0]].lastDishMonth) {
+          if (!privateRooms[value[0].toLowerCase()].lastDishMonth) {
             text +=
               "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
           } else {
             text +=
               "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
           }
+          // Prevent issues with Markdown and users with _ in their name
+          text = text.replace(/_/g, "\\_");
           client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
           notificationFunc(
             dish_notification_msg
@@ -286,7 +286,7 @@ either add this user to the room, or try again using the format @[userId]:[domai
             client,
             null
           )
-          privateRooms[value[0]].lastDishMonth = new Date().getMonth()
+          privateRooms[value[0].toLowerCase()].lastDishMonth = new Date().getMonth()
         })
       }
     )
@@ -332,6 +332,8 @@ function findReceiver(privateRooms, receiver) {
   let userInRoom = false
   let multipleUsers = false
   let display_name = ''
+
+  receiver = receiver.toLowerCase()
 
   if (privateRooms[receiver] != null) {
     userInRoom = true
