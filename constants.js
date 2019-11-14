@@ -31,7 +31,6 @@ module.exports.dish_notification_msg =
   \n\nTo be eligible to receive tokens, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply).\
   \n\n**Thank you** for being here, from all of us at the Commons Stack'
 
-
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 
 module.exports.milestone_notification_msg =
