@@ -31,6 +31,7 @@ module.exports.dish_notification_msg =
   \n\nTo be eligible to receive tokens, you must apply to be a member of the Commons Stack and be accepted. To apply, fill the form [here](http://commonsstack.org/apply).\
   \n\n**Thank you** for being here from the Commons Stack'
 
+
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 
 module.exports.milestone_notification_msg =
