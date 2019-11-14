@@ -40,17 +40,20 @@ exports.handlePointGiving = function(
   if (command == '!help') {
     client.sendMessage(
       roomId,
-      'dish using the following format:\n!dish [type of praise] to [handle, handle, handle] [' +
+      'dish using the following format:\n!dish Praise to [handle, handle, handle] [' +
         reason_seperators.toString().replace(/,/g, '/') +
         '] [reason]'
     )
   } else if (command == '!dish') {
     if (input.chat.type === 'private') {
       client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
-      //return
+      return
     }
     if (!dishers.includes(user)) {
-      client.sendMessage(roomId, `You aren't permitted to dish praise.`)
+      client.sendMessage(
+        roomId,
+        `Sorry, that didn't work! Right now you are not permitted to dish Praise (only receive it), but we hope to open up this initiative to more people in the future!`
+      )
       return
     }
     handleDish(input, privateRooms, notificationFunction, client, auth)
@@ -69,7 +72,10 @@ exports.handlePointGiving = function(
     } else {
       client.sendMessage(roomId, `Sorry, you're not allowed to do that.`)
     }
-  } else if (command === '/start' && privateRooms[user.toLowerCase()].room === roomId) {
+  } else if (
+    command === '/start' &&
+    privateRooms[user.toLowerCase()].room === roomId
+  ) {
     client.sendMessage(roomId, dish_notification_msg, {
       parse_mode: 'Markdown',
     })
@@ -155,7 +161,7 @@ function handleDish(msg, privateRooms, notificationFunc, client, auth) {
   if (!matched) {
     client.sendMessage(
       msg.chat.id,
-      'ERROR, please use the following format:\n!dish [type of praise] to [handle, handle, handle] for [reason]'
+      'ERROR, please use the following format:\n!dish Praise to [handle, handle, handle] for [reason]'
     )
   }
 }
@@ -228,13 +234,17 @@ function tryDish(
       }
 
       if (multipleUsers) {
-        const userError = new Error(`There are multiple users with the name '${receiver}' in this room.`)
+        const userError = new Error(
+          `There are multiple users with the name '${receiver}' in this room.`
+        )
         userError.code = 'USER_MULTIPLE'
         throw userError
       }
 
       if (!userInRoom) {
-        const userError = new Error(`Username '${receiver}' does not exist in this room.`)
+        const userError = new Error(
+          `Username '${receiver}' does not exist in this room.`
+        )
         userError.code = 'USER_DOES_NOT_EXIST'
         throw userError
       }
@@ -276,7 +286,7 @@ function tryDish(
               "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
           }
           // Prevent issues with Markdown and users with _ in their name
-          text = text.replace(/_/g, "\\_");
+          text = text.replace(/_/g, '\\_')
           client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
           notificationFunc(
             dish_notification_msg
@@ -286,7 +296,9 @@ function tryDish(
             client,
             null
           )
-          privateRooms[value[0].toLowerCase()].lastDishMonth = new Date().getMonth()
+          privateRooms[
+            value[0].toLowerCase()
+          ].lastDishMonth = new Date().getMonth()
         })
       }
     )
@@ -308,7 +320,7 @@ function tryDish(
     } else {
       client.sendMessage(
         msg.chat.id,
-        'ERROR, please use the following format:\n!dish [type of praise] to [handle, handle, handle] for [reason]'
+        'ERROR, please use the following format:\n!dish Praise to [handle, handle, handle] for [reason]'
       )
     }
   }
