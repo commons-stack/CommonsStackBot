@@ -76,6 +76,7 @@ exports.handlePointGiving = function(
     command === '/start' &&
     privateRooms[user.toLowerCase()].room === roomId
   ) {
+    privateRooms[user.toLowerCase()].started = true
     client.sendMessage(roomId, dish_notification_msg, {
       parse_mode: 'Markdown',
     })
@@ -277,17 +278,19 @@ function tryDish(
         }
 
         values.forEach(value => {
-          let text = `${value[1]} dished ${value[3]} to @${value[0]}`
-          if (!privateRooms[value[0].toLowerCase()].lastDishMonth) {
-            text +=
-              "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
-          } else {
-            text +=
-              "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
+          if (!privateRooms[value[0].toLowerCase()].started) {
+            let text = `${value[1]} dished ${value[3]} to @${value[0]}`
+            if (!privateRooms[value[0].toLowerCase()].lastDishMonth) {
+              text +=
+                "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
+            } else {
+              text +=
+                "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
+            }
+            // Prevent issues with Markdown and users with _ in their name
+            text = text.replace(/_/g, '\\_')
+            client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
           }
-          // Prevent issues with Markdown and users with _ in their name
-          text = text.replace(/_/g, '\\_')
-          client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
           notificationFunc(
             dish_notification_msg
               .replace('%DISHER%', value[1])
