@@ -291,9 +291,7 @@ function tryDish(
             .map(e => `@${e[0]}`)
             .join(', ')
             .replace(/, ((?:.(?!, ))+)$/, ' and $1')
-          let text = `${first[1]} dished ${
-            first[3]
-          } to ${enumeration} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
+          let text = `${first[1]} dished ${first[3]} to ${enumeration} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
           // Prevent issues with Markdown and users with _ in their name
           text = text.replace(/_/g, '\\_')
           client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
