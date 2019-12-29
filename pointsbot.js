@@ -277,19 +277,11 @@ function tryDish(
           return console.log('The API returned an error: ' + err)
         }
 
+        let mentionPublicly = []
+
         values.forEach(value => {
           if (!privateRooms[value[0].toLowerCase()].started) {
-            let text = `${value[1]} dished ${value[3]} to @${value[0]}`
-            if (!privateRooms[value[0].toLowerCase()].lastDishMonth) {
-              text +=
-                "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need"
-            } else {
-              text +=
-                "\nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start) and I'll send you all the info you need"
-            }
-            // Prevent issues with Markdown and users with _ in their name
-            text = text.replace(/_/g, '\\_')
-            client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
+            mentionPublicly.push(value)
           }
           notificationFunc(
             dish_notification_msg
@@ -303,6 +295,20 @@ function tryDish(
             value[0].toLowerCase()
           ].lastDishMonth = new Date().getMonth()
         })
+
+        if (mentionPublicly.length > 0) {
+          const first = mentionPublicly[0]
+          const enumeration = mentionPublicly
+            .map(e => `@${e[0]}`)
+            .join(', ')
+            .replace(/, ((?:.(?!, ))+)$/, ' and $1')
+          let text = `${first[1]} dished ${
+            first[3]
+          } to ${enumeration} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
+          // Prevent issues with Markdown and users with _ in their name
+          text = text.replace(/_/g, '\\_')
+          client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
+        }
       }
     )
   } catch (err) {
