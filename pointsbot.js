@@ -120,7 +120,6 @@ function handleMilestoneAutomation(notificationFunc, client, privateRooms) {
         null
       )
       privateRooms[user.toLowerCase()].lastMonthNotified = now.getMonth()
-      //privateRooms[milestone[0]].lastMonthNotified = now.getMonth()
     }
   }
 }
@@ -250,17 +249,7 @@ function tryDish(
         throw userError
       }
       const date = dayjs().format('DD-MMM-YYYY')
-      //const link = `https://t.me/${msg.chat.username}/${msg.message_id}`
-      values.push([
-        receiver,
-        sender,
-        reason,
-        //amount.toFormat(2),
-        type,
-        date,
-        //link,
-        display_name,
-      ])
+      values.push([receiver, sender, reason, type, date, display_name])
     })
 
     const body = { values }
@@ -337,17 +326,9 @@ function tryDish(
 
 // Try to intelligently format the receiver field
 function findReceiver(privateRooms, receiver) {
-  if (receiver.startsWith('<a href="https://matrix.to/#/')) {
-    receiver = receiver.substring(29, receiver.indexOf('">'))
-  }
-
   if (receiver[0] == '@') {
     receiver = receiver.substr(1)
   }
-
-  /**if (receiver[0] != '@') {
-    receiver = `@${receiver}`
-  }**/
 
   // defaults
   let userInRoom = false
@@ -360,24 +341,6 @@ function findReceiver(privateRooms, receiver) {
     userInRoom = true
   }
 
-  /**if (receiver.split(':').length < 2 && !userInRoom) {
-    for (let domain of domains) {
-      if (room.getMember(`${receiver}:${domain}`) != null) {
-        receiver = `${receiver}:${domain}`
-        display_name = room.getMember(receiver).name
-
-        // if a user has already been found under a different domain
-        if (userInRoom) {
-          multipleUsers = true
-          receiver = receiver.split(':')[0]
-          break
-        }
-
-        // user under this domain was found.
-        userInRoom = true
-      }
-    }
-  }**/
   return {
     userInRoom,
     receiver,
