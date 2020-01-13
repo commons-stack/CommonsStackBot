@@ -218,6 +218,7 @@ function tryDish(
 
     const sheets = google.sheets({ version: 'v4', auth })
     var values = []
+    var errors = []
 
     users.forEach(user => {
       user = user.trim()
@@ -233,24 +234,38 @@ function tryDish(
         ;(userInRoom = true), (multipleUsers = false)
       }
 
-      if (multipleUsers) {
-        const userError = new Error(
-          `There are multiple users with the name '${receiver}' in this room.`
-        )
-        userError.code = 'USER_MULTIPLE'
-        throw userError
-      }
+      try {
+        if (multipleUsers) {
+          const userError = new Error(
+            `There are multiple users with the name '${receiver}' in this room.`
+          )
+          userError.usernames = [receiver]
+          userError.genMessage = usernames =>
+            `There are multiple users with the names '${enumerate(usernames)}' in this room.`
+          userError.code = 'USER_MULTIPLE'
+          throw userError
+        }
 
-      if (!userInRoom) {
-        const userError = new Error(
-          `Username '${receiver}' does not exist in this room.`
-        )
-        userError.code = 'USER_DOES_NOT_EXIST'
-        throw userError
+        if (!userInRoom) {
+          const userError = new Error(
+            `Username '${receiver}' does not exist in this room.`
+          )
+          userError.usernames = [receiver]
+          userError.genMessage = usernames =>
+            `Usernames '${enumerate(usernames)}' does not exist in this room.`
+          userError.code = 'USER_DOES_NOT_EXIST'
+          throw userError
+        }
+        const date = dayjs().format('DD-MMM-YYYY')
+        values.push([receiver, sender, reason, type, date, display_name])
+      } catch (err) {
+        errors.push(err)
       }
-      const date = dayjs().format('DD-MMM-YYYY')
-      values.push([receiver, sender, reason, type, date, display_name])
     })
+
+    if (errors.length > 0) {
+      throw errors
+    }
 
     const body = { values }
     sheets.spreadsheets.values.append(
@@ -287,38 +302,40 @@ function tryDish(
 
         if (mentionPublicly.length > 0) {
           const first = mentionPublicly[0]
-          const enumeration = mentionPublicly
-            .map(e => `@${e[0]}`)
-            .join(', ')
-            .replace(/, ((?:.(?!, ))+)$/, ' and $1')
-          let text = `${first[1]} dished ${first[3]} to ${enumeration} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
+          let text = `${first[1]} dished ${first[3]} to ${enumerate(
+            mentionPublicly.map(e => e[0])
+          )} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
           // Prevent issues with Markdown and users with _ in their name
           text = text.replace(/_/g, '\\_')
           client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
         }
       }
     )
-  } catch (err) {
-    console.error(err)
-    const MANUAL_ERROR_CODES = [
-      'POINTS_NOT_NUMBER',
-      'USER_DOES_NOT_EXIST',
-      'POINT_TYPE_DOES_NOT_EXIST',
-      'USER_MULTIPLE',
-      'POINTS_ARE_NEGATIVE_OR_ZERO',
-      'POINTS_OVER_MAXIMUM',
-    ]
-    if (MANUAL_ERROR_CODES.includes(err.code)) {
-      client.sendMessage(
-        msg.chat.id,
-        'ERROR: ' + err.message + "\nType '!help' for more information."
-      )
-    } else {
-      client.sendMessage(
-        msg.chat.id,
-        'ERROR, please use the following format:\n!dish Praise to [handle, handle, handle] for [reason]'
-      )
-    }
+  } catch (errors) {
+    combineErrors(errors).forEach(err => {
+      console.error(err)
+      const MANUAL_ERROR_CODES = [
+        'POINTS_NOT_NUMBER',
+        'USER_DOES_NOT_EXIST',
+        'POINT_TYPE_DOES_NOT_EXIST',
+        'USER_MULTIPLE',
+        'POINTS_ARE_NEGATIVE_OR_ZERO',
+        'POINTS_OVER_MAXIMUM',
+      ]
+      if (MANUAL_ERROR_CODES.includes(err.code)) {
+        client.sendMessage(
+          msg.chat.id,
+          'ERROR: ' +
+            (err.usernames ? err.genMessage(err.usernames) : err.message) +
+            "\nType '!help' for more information."
+        )
+      } else {
+        client.sendMessage(
+          msg.chat.id,
+          'ERROR, please use the following format:\n!dish Praise to [handle, handle, handle] for [reason]'
+        )
+      }
+    })
   }
 }
 
@@ -345,4 +362,26 @@ function findReceiver(privateRooms, receiver) {
     multipleUsers,
     display_name,
   }
+}
+
+function combineErrors(errors) {
+  if (!Array.isArray(errors)) {
+    return [errors]
+  }
+  var combinedErrors = {}
+  errors.forEach(err => {
+    if (combinedErrors[err.code]) {
+      combinedErrors[err.code].usernames.push(err.usernames[0])
+    } else {
+      combinedErrors[err.code] = err
+    }
+  })
+  return Object.values(combinedErrors)
+}
+
+function enumerate(users) {
+  return users
+    .map(u => `@${u}`)
+    .join(', ')
+    .replace(/, ((?:.(?!, ))+)$/, ' and $1')
 }
