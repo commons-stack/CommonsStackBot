@@ -241,7 +241,9 @@ function tryDish(
           )
           userError.usernames = [receiver]
           userError.genMessage = usernames =>
-            `There are multiple users with the names '${enumerate(usernames)}' in this room.`
+            `There are multiple users with the names '${enumerate(
+              usernames
+            )}' in this room.`
           userError.code = 'USER_MULTIPLE'
           throw userError
         }
