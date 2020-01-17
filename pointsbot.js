@@ -241,7 +241,7 @@ function tryDish(
           )
           userError.usernames = [receiver]
           userError.genMessage = usernames =>
-            `There are multiple users with the names '${enumerate(
+            `There are multiple users with the name(s) '${enumerate(
               usernames
             )}' in this room.`
           userError.code = 'USER_MULTIPLE'
@@ -254,7 +254,9 @@ function tryDish(
           )
           userError.usernames = [receiver]
           userError.genMessage = usernames =>
-            `Usernames '${enumerate(usernames)}' does not exist in this room.`
+            `Username(s) '${enumerate(
+              usernames
+            )}' do(es) not exist in this room.`
           userError.code = 'USER_DOES_NOT_EXIST'
           throw userError
         }
@@ -283,11 +285,11 @@ function tryDish(
           return console.log('The API returned an error: ' + err)
         }
 
-        let shouldSendMessage = false
+        let shouldSendLargeMessage = false
 
         values.forEach(value => {
           if (!privateRooms[value[0].toLowerCase()].started) {
-            shouldSendMessage = true
+            shouldSendLargeMessage = true
           }
           notificationFunc(
             dish_notification_msg
@@ -302,15 +304,21 @@ function tryDish(
           ].lastDishMonth = new Date().getMonth()
         })
 
-        if (shouldSendMessage) {
-          const first = mentionPublicly[0]
-          let text = `${first[1]} dished ${first[3]} to ${enumerate(
-            values.map(e => e[0])
+        const users = values.map(e => e[0])
+        let text = ''
+        const first = values[0]
+        if (shouldSendLargeMessage) {
+          text = `${first[1]} dished ${first[3]} to ${enumerate(
+            users
           )} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
-          // Prevent issues with Markdown and users with _ in their name
-          text = text.replace(/_/g, '\\_')
-          client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
+        } else {
+          text = `Praise dished, I have sent you a direct message ${enumerate(
+            users
+          )}`
         }
+        // Prevent issues with Markdown and users with _ in their name
+        text = text.replace(/_/g, '\\_')
+        client.sendMessage(msg.chat.id, text, { parse_mode: 'Markdown' })
       }
     )
   } catch (errors) {
