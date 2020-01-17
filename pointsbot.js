@@ -284,11 +284,13 @@ function tryDish(
         }
 
         let mentionPublicly = []
+        let shouldSendMessage = false
 
         values.forEach(value => {
           if (!privateRooms[value[0].toLowerCase()].started) {
-            mentionPublicly.push(value)
+            shouldSendMessage = true
           }
+          mentionPublicly.push(value)
           notificationFunc(
             dish_notification_msg
               .replace('%DISHER%', value[1])
@@ -302,7 +304,7 @@ function tryDish(
           ].lastDishMonth = new Date().getMonth()
         })
 
-        if (mentionPublicly.length > 0) {
+        if (shouldSendMessage) {
           const first = mentionPublicly[0]
           let text = `${first[1]} dished ${first[3]} to ${enumerate(
             mentionPublicly.map(e => e[0])
