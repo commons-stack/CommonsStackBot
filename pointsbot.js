@@ -283,14 +283,12 @@ function tryDish(
           return console.log('The API returned an error: ' + err)
         }
 
-        let mentionPublicly = []
         let shouldSendMessage = false
 
         values.forEach(value => {
           if (!privateRooms[value[0].toLowerCase()].started) {
             shouldSendMessage = true
           }
-          mentionPublicly.push(value)
           notificationFunc(
             dish_notification_msg
               .replace('%DISHER%', value[1])
@@ -307,7 +305,7 @@ function tryDish(
         if (shouldSendMessage) {
           const first = mentionPublicly[0]
           let text = `${first[1]} dished ${first[3]} to ${enumerate(
-            mentionPublicly.map(e => e[0])
+            values.map(e => e[0])
           )} \nIn order to claim the praise, please send me a [direct message](https://t.me/commonsstackbot?start), hit start and I'll send you all the info you need`
           // Prevent issues with Markdown and users with _ in their name
           text = text.replace(/_/g, '\\_')
