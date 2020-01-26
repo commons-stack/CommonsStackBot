@@ -179,6 +179,7 @@ function tryDish(
 ) {
   try {
     const sender = msg.from.username
+    const roomTitle = msg.chat.title ? msg.chat.title : ''
     const amount = new BigNumber(nPoints)
     type = type.toUpperCase()
 
@@ -222,7 +223,7 @@ function tryDish(
 
     users.forEach(user => {
       user = user.trim()
-      let { userInRoom, receiver, display_name, multipleUsers } = findReceiver(
+      let { userInRoom, receiver, multipleUsers } = findReceiver(
         privateRooms,
         user
       ) // try to find user
@@ -261,7 +262,7 @@ function tryDish(
           throw userError
         }
         const date = dayjs().format('DD-MMM-YYYY')
-        values.push([receiver, sender, reason, type, date, display_name])
+        values.push([receiver, sender, reason, type, date, roomTitle])
       } catch (err) {
         errors.push(err)
       }
@@ -358,7 +359,6 @@ function findReceiver(privateRooms, receiver) {
   // defaults
   let userInRoom = false
   let multipleUsers = false
-  let display_name = ''
 
   receiver = receiver.toLowerCase()
 
@@ -370,7 +370,6 @@ function findReceiver(privateRooms, receiver) {
     userInRoom,
     receiver,
     multipleUsers,
-    display_name,
   }
 }
 
