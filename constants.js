@@ -10,6 +10,8 @@ module.exports.dishers = [
   'jeffemmett',
   'mzargham',
   'frederikbolding',
+  'phil_h',
+  'sembrestels',
 ]
 
 // Allowed point types
