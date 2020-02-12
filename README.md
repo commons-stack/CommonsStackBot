@@ -24,7 +24,7 @@ The bot is automatically deployed to Digital Ocean using Circle CI.
 Invite your bot to a room and use one of the folowing commands:
 * `!dish [# of points] [type of points] points to [handle] for [reason explaining why].`
 * `!help` for more information.
-* `!sheet` to see the current [rewardDAO](https://medium.com/giveth/how-rewarddao-works-aka-what-are-points-7388f70269a) sheet
+* `!sheet` to see the current [Praise](https://wiki.commonsstack.org/contributors-guide) sheet
 
 Pull requests are welcome!
 Please run `npm test` before submitting a PR to ensure that you have not introduced any errors.
