@@ -5,9 +5,9 @@
 // Dishers
 module.exports.dishers = [
   'loie_giveth',
-  'krrisis',
   'jeffemmett',
   'mzargham',
+  'griffgreen',
   'frederikbolding',
   'phil_h',
   'lkngtn',
