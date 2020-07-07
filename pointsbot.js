@@ -52,7 +52,7 @@ exports.handlePointGiving = function(
     if (!dishers.includes(user)) {
       client.sendMessage(
         roomId,
-        `Sorry, that didn't work! Right now you can only receive Praise. Members of the Trusted Seed who pass a certain threshold of CSTK tokens can also dish. Want CSTK tokens? 1) Apply to become a member 2) Contribute time to our mission 3) Receive CSTK tokens (for donating or Praise). [Read more here](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61) .`
+        `Sorry, that didn't work! Right now you can only receive Praise. Members of the Trusted Seed who pass a certain threshold of CSTK tokens can also dish. Want CSTK tokens? 1) Apply to become a member 2) Contribute to our mission 3) Receive CSTK tokens (for donating or Praise). Read more here: https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61.`
       )
       return
     }
