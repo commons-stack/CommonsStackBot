@@ -52,7 +52,7 @@ exports.handlePointGiving = function(
     if (!dishers.includes(user)) {
       client.sendMessage(
         roomId,
-        `Sorry, that didn't work! Right now you are not permitted to dish Praise (only receive it), but we hope to open up this initiative to more people in the future!`
+        `Sorry, that didn't work! Right now you can only receive Praise. Members of the Trusted Seed who pass a certain threshold of CSTK tokens can also dish. How to get CSTK tokens? 1) Apply to become a member 2) Make a donation or contribute time to our mission 3) Receive CSTK tokens (directly or through Praise). [Read more here](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).`
       )
       return
     }
