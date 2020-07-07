@@ -9,7 +9,7 @@ module.exports.dishers = [
   'mzargham',
   'krrisis',
   'willruddick',
-  'griffgreen',
+  'GriffGreen',
   'frederikbolding',
   'phil_h',
   'lkngtn',
