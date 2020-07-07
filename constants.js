@@ -32,8 +32,8 @@ module.exports.sheet_tab_name = 'PraiseBot!A1:F1'
 module.exports.dish_notification_msg =
   'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise may turn into CSTK tokens at the end of the month, giving you reputation as part of our Trusted Seed.\
   \n\nTo be eligible to receive tokens, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you your tokens on the address you mention in the form. If you already applied, no need to do this again!\
-  \n\nPlease see the [Contributors Guide](https://wiki.commonsstack.org/contributors-guide) on our Wiki to learn more about Praise and the Trusted Seed.\
-  \n\n**Thank you** for helping make the Commons Stack a reality!'
+  \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the Commons Stack!'
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 
