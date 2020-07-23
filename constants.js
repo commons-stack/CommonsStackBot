@@ -15,6 +15,8 @@ module.exports.dishers = [
   'lkngtn',
   'davidhq',
   'sembrestels',
+  `Gfriis`,
+  `Ajmaq`,
 ]
 
 // Allowed point types
