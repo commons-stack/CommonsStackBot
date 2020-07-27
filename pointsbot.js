@@ -44,6 +44,8 @@ exports.handlePointGiving = function(
         reason_seperators.toString().replace(/,/g, '/') +
         '] [reason]'
     )
+  } else if (command == '!roomid') {
+    client.sendMessage(roomId, `The room id of this room is: ${roomId}`)
   } else if (command == '!dish') {
     if (input.chat.type === 'private') {
       client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
