@@ -32,11 +32,17 @@ module.exports.sheet_id =
     : '1p6_zA792aeKnEJ2iudIjeVFmPTFgnj-znoH6mQFzpw8'
 module.exports.sheet_tab_name = 'PraiseBot!A1:F1'
 
-module.exports.dish_notification_msg =
-  'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise may turn into CSTK tokens at the end of the month, giving you reputation as part of our Trusted Seed.\
+module.exports.dish_notification_msgs = {
+  // CommonsStack
+  1001201746023: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise may turn into CSTK tokens at the end of the month, giving you reputation as part of our Trusted Seed.\
   \n\nTo be eligible to receive tokens, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you your tokens on the address you mention in the form. If you already applied, no need to do this again!\
   \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
-  \n\n**Thank you** for supporting the Commons Stack!'
+  \n\n**Thank you** for supporting the Commons Stack!',
+  // CSDEV
+  1001383369347: 'Come on guys, write your custom blurb already',
+  // CCA
+  1001381175365: 'Come on guys, write your custom blurb already',
+}
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
 

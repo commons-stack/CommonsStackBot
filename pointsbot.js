@@ -6,7 +6,7 @@ const {
   max_points,
   sheet_id,
   sheet_tab_name,
-  dish_notification_msg,
+  dish_notification_msgs,
   milestone_automation_trigger_users,
   milestone_notification_msg,
 } = require('./constants')
@@ -44,6 +44,8 @@ exports.handlePointGiving = function(
         reason_seperators.toString().replace(/,/g, '/') +
         '] [reason]'
     )
+  } else if (command == '!roomid') {
+    client.sendMessage(roomId, `The room id of this room is: ${roomId}`)
   } else if (command == '!dish') {
     if (input.chat.type === 'private') {
       client.sendMessage(roomId, `Dishing isn't allowed in private rooms.`)
@@ -76,10 +78,19 @@ exports.handlePointGiving = function(
     command === '/start' &&
     privateRooms[user.toLowerCase()].room === roomId
   ) {
-    privateRooms[user.toLowerCase()].started = true
-    client.sendMessage(roomId, dish_notification_msg, {
-      parse_mode: 'Markdown',
-    })
+    const privateRoom = privateRooms[user.toLowerCase()]
+    privateRoom.started = true
+    if (privateRoom.pendingNotifications) {
+      privateRoom.pendingNotifications.forEach(pendingRoomId => {
+        const pendingRoomMsg = dish_notification_msgs[pendingRoomId]
+        if (pendingRoomId !== undefined) {
+          client.sendMessage(roomId, pendingRoomMsg, {
+            parse_mode: 'Markdown',
+          })
+        }
+      })
+      privateRoom.pendingNotifications = []
+    }
   }
 }
 
@@ -178,6 +189,7 @@ function tryDish(
   reason
 ) {
   try {
+    const roomId = msg.chat.id
     const sender = msg.from.username
     const roomTitle = msg.chat.title ? msg.chat.title : ''
     const amount = new BigNumber(nPoints)
@@ -289,20 +301,25 @@ function tryDish(
         let shouldSendLargeMessage = false
 
         values.forEach(value => {
-          if (!privateRooms[value[0].toLowerCase()].started) {
+          const privateRoom = privateRooms[value[0].toLowerCase()]
+          if (!privateRoom.started) {
+            if (!privateRoom.pendingNotifications) {
+              privateRoom.pendingNotifications = []
+            }
+            privateRoom.pendingNotifications.push(roomId)
             shouldSendLargeMessage = true
+          } else {
+            const msg = dish_notification_msgs[Math.abs(roomId)]
+            if (msg !== undefined) {
+              notificationFunc(
+                msg.replace('%DISHER%', value[1]).replace('%ROOM%', value[6]),
+                value[0],
+                client,
+                null
+              )
+            }
           }
-          notificationFunc(
-            dish_notification_msg
-              .replace('%DISHER%', value[1])
-              .replace('%ROOM%', value[6]),
-            value[0],
-            client,
-            null
-          )
-          privateRooms[
-            value[0].toLowerCase()
-          ].lastDishMonth = new Date().getMonth()
+          privateRoom.lastDishMonth = new Date().getMonth()
         })
 
         const users = values.map(e => e[0])
