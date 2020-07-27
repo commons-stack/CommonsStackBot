@@ -76,10 +76,19 @@ exports.handlePointGiving = function(
     command === '/start' &&
     privateRooms[user.toLowerCase()].room === roomId
   ) {
-    privateRooms[user.toLowerCase()].started = true
-    client.sendMessage(roomId, dish_notification_msg, {
-      parse_mode: 'Markdown',
-    })
+    const privateRoom = privateRooms[user.toLowerCase()]
+    privateRoom.started = true
+    if (privateRoom.pendingNotifications) {
+      privateRoom.pendingNotifications.forEach(pendingRoomId => {
+        const pendingRoomMsg = dish_notification_msgs[pendingRoomId]
+        if (pendingRoomId !== undefined) {
+          client.sendMessage(roomId, pendingRoomMsg, {
+            parse_mode: 'Markdown',
+          })
+        }
+      })
+      privateRoom.pendingNotifications = []
+    }
   }
 }
 
@@ -290,21 +299,25 @@ function tryDish(
         let shouldSendLargeMessage = false
 
         values.forEach(value => {
-          if (!privateRooms[value[0].toLowerCase()].started) {
+          const privateRoom = privateRooms[value[0].toLowerCase()]
+          if (!privateRoom.started) {
+            if (!privateRoom.pendingNotifications) {
+              privateRoom.pendingNotifications = []
+            }
+            privateRoom.pendingNotifications.push(roomId)
             shouldSendLargeMessage = true
+          } else {
+            const msg = dish_notification_msgs[Math.abs(roomId)]
+            if (msg !== undefined) {
+              notificationFunc(
+                msg.replace('%DISHER%', value[1]).replace('%ROOM%', value[6]),
+                value[0],
+                client,
+                null
+              )
+            }
           }
-          const msg = dish_notification_msgs[Math.abs(roomId)]
-          if (msg !== undefined) {
-            notificationFunc(
-              msg.replace('%DISHER%', value[1]).replace('%ROOM%', value[6]),
-              value[0],
-              client,
-              null
-            )
-          }
-          privateRooms[
-            value[0].toLowerCase()
-          ].lastDishMonth = new Date().getMonth()
+          privateRoom.lastDishMonth = new Date().getMonth()
         })
 
         const users = values.map(e => e[0])
