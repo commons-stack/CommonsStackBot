@@ -6,7 +6,7 @@ const {
   max_points,
   sheet_id,
   sheet_tab_name,
-  dish_notification_msg,
+  dish_notification_msgs,
   milestone_automation_trigger_users,
   milestone_notification_msg,
 } = require('./constants')
@@ -178,6 +178,7 @@ function tryDish(
   reason
 ) {
   try {
+    const roomId = msg.chat.id
     const sender = msg.from.username
     const roomTitle = msg.chat.title ? msg.chat.title : ''
     const amount = new BigNumber(nPoints)
@@ -292,14 +293,15 @@ function tryDish(
           if (!privateRooms[value[0].toLowerCase()].started) {
             shouldSendLargeMessage = true
           }
-          notificationFunc(
-            dish_notification_msg
-              .replace('%DISHER%', value[1])
-              .replace('%ROOM%', value[6]),
-            value[0],
-            client,
-            null
-          )
+          const msg = dish_notification_msgs[Math.abs(roomId)]
+          if (msg !== undefined) {
+            notificationFunc(
+              msg.replace('%DISHER%', value[1]).replace('%ROOM%', value[6]),
+              value[0],
+              client,
+              null
+            )
+          }
           privateRooms[
             value[0].toLowerCase()
           ].lastDishMonth = new Date().getMonth()
