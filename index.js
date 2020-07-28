@@ -89,9 +89,12 @@ function checkUser(msg) {
       u => u.room === msg.from.id && u.username === msg.from.username
     )
   ) {
+    const existing = privateRooms[msg.from.username.toLowerCase()]
     privateRooms[msg.from.username.toLowerCase()] = {
       room: msg.from.id,
       username: msg.from.username.toLowerCase(),
+      started: existing ? existing.started : false,
+      pendingNotifications: existing ? existing.pendingNotifications : [],
     }
   }
 }
