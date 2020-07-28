@@ -16,6 +16,7 @@ module.exports.dishers = [
   'davidhq',
   'sembrestels',
   `Gfriis`,
+  `JessicaZartler`,
   `Ajmaq`,
 ]
 
