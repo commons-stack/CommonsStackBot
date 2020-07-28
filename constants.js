@@ -42,12 +42,12 @@ module.exports.dish_notification_msgs = {
   1001383369347: 'Come on guys, write your custom blurb already',
   // CCA
   919179467: '🌟 Dear contributor to the Community Currency Alliance 🌟\
-\n\n👏  Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which which is a personal non-transferable acknowledgment token. In the future, we are hoping to use a community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or want to get involved. \
+\n\n👏 Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which is a personal non-transferable acknowledgment token powered by the Commons Stack. In the future, we are hoping to use a dedicated community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or how you want to get involved. \
 \n\n🖥 Join our work at [https://currency.community/](https://currency.community/) 🖥\
 \n\n🌟 Thank you for your support to the Community Currency Alliance 🌟',
   // CCA Test
   457094753: '🌟 Dear contributor to the Community Currency Alliance 🌟\
-  \n\n👏  Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which which is a personal non-transferable acknowledgment token. In the future, we are hoping to use a community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or want to get involved. \
+  \n\n👏 Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which is a personal non-transferable acknowledgment token powered by the Commons Stack. In the future, we are hoping to use a dedicated community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or how you want to get involved. \
   \n\n🖥 Join our work at [https://currency.community/](https://currency.community/) 🖥\
   \n\n🌟 Thank you for your support to the Community Currency Alliance 🌟',
 }
