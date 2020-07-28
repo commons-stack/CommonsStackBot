@@ -38,13 +38,13 @@ module.exports.dish_notification_msgs = {
   \n\nTo be eligible to receive tokens, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you your tokens on the address you mention in the form. If you already applied, no need to do this again!\
   \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Commons Stack!',
-// CSDEV
+  // CSDEV
   1001383369347: 'Come on guys, write your custom blurb already',
-// CCA
+  // CCA
   1001381175365: '🌟 Dear contributor to the Community Currency Alliance 🌟\
-\n\n👏 Congratulations! Your valuable contribution has been acknowledged, and you've just received "CSTK” which is a personal non-transferable acknowledgment community currency set up by the Commons Stack Association.\
+\n\n👏 Congratulations! Your valuable contribution has been acknowledged, and you\'ve just received "CSTK” which is a personal non-transferable acknowledgment community currency set up by the Commons Stack Association.\
 \n\n🌱To be eligible to receive these tokens and become a member of the Commons Stack Association, please fill out the form [here](http://commonsstack.org/apply). If you already applied, no need to do this again! You can learn more about the Commonstack and “CSTK” in this [wiki](https://wiki.commonsstack.org/contributors-guide) and in this [article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
-\n\n🌟 **Thank you** for your support to the Commons and the Community Currency Alliance 🌟',  
+\n\n🌟 **Thank you** for your support to the Commons and the Community Currency Alliance 🌟',
 }
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
