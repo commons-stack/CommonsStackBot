@@ -41,10 +41,15 @@ module.exports.dish_notification_msgs = {
   // CSDEV
   1001383369347: 'Come on guys, write your custom blurb already',
   // CCA
-  1001381175365: '🌟 Dear contributor to the Community Currency Alliance 🌟\
-\n\n👏 Congratulations! Your valuable contribution has been acknowledged, and you\'ve just received "CSTK” which is a personal non-transferable acknowledgment community currency set up by the Commons Stack Association.\
-\n\n🌱To be eligible to receive these tokens and become a member of the Commons Stack Association, please fill out the form [here](http://commonsstack.org/apply). If you already applied, no need to do this again! You can learn more about the Commonstack and “CSTK” in this [wiki](https://wiki.commonsstack.org/contributors-guide) and in this [article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
-\n\n🌟 **Thank you** for your support to the Commons and the Community Currency Alliance 🌟',
+  919179467: '🌟 Dear contributor to the Community Currency Alliance 🌟\
+\n\n👏  Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which which is a personal non-transferable acknowledgment token. In the future, we are hoping to use a community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or want to get involved. \
+\n\n🖥 Join our work at [https://currency.community/](https://currency.community/) 🖥\
+\n\n🌟 Thank you for your support to the Community Currency Alliance 🌟',
+  // CCA Test
+  457094753: '🌟 Dear contributor to the Community Currency Alliance 🌟\
+  \n\n👏  Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which which is a personal non-transferable acknowledgment token. In the future, we are hoping to use a community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or want to get involved. \
+  \n\n🖥 Join our work at [https://currency.community/](https://currency.community/) 🖥\
+  \n\n🌟 Thank you for your support to the Community Currency Alliance 🌟',
 }
 
 module.exports.milestone_automation_trigger_users = ['@danibelle:matrix.org']
