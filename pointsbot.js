@@ -83,7 +83,7 @@ exports.handlePointGiving = function(
       privateRooms[user.toLowerCase()].pendingNotifications.forEach(
         pendingRoomId => {
           const pendingRoomMsg = dish_notification_msgs[pendingRoomId]
-          if (pendingRoomId !== undefined) {
+          if (pendingRoomMsg !== undefined) {
             client.sendMessage(roomId, pendingRoomMsg, {
               parse_mode: 'Markdown',
             })
@@ -302,7 +302,6 @@ function tryDish(
         let shouldSendLargeMessage = false
 
         values.forEach(value => {
-          console.log(value[0].toLowerCase())
           if (!privateRooms[value[0].toLowerCase()].started) {
             if (!privateRooms[value[0].toLowerCase()].pendingNotifications) {
               privateRooms[value[0].toLowerCase()].pendingNotifications = []
