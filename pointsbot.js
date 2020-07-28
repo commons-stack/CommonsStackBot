@@ -78,18 +78,19 @@ exports.handlePointGiving = function(
     command === '/start' &&
     privateRooms[user.toLowerCase()].room === roomId
   ) {
-    const privateRoom = privateRooms[user.toLowerCase()]
-    privateRoom.started = true
-    if (privateRoom.pendingNotifications) {
-      privateRoom.pendingNotifications.forEach(pendingRoomId => {
-        const pendingRoomMsg = dish_notification_msgs[pendingRoomId]
-        if (pendingRoomId !== undefined) {
-          client.sendMessage(roomId, pendingRoomMsg, {
-            parse_mode: 'Markdown',
-          })
+    privateRooms[user.toLowerCase()].started = true
+    if (privateRooms[user.toLowerCase()].pendingNotifications) {
+      privateRooms[user.toLowerCase()].pendingNotifications.forEach(
+        pendingRoomId => {
+          const pendingRoomMsg = dish_notification_msgs[pendingRoomId]
+          if (pendingRoomId !== undefined) {
+            client.sendMessage(roomId, pendingRoomMsg, {
+              parse_mode: 'Markdown',
+            })
+          }
         }
-      })
-      privateRoom.pendingNotifications = []
+      )
+      privateRooms[user.toLowerCase()].pendingNotifications = []
     }
   }
 }
@@ -301,12 +302,14 @@ function tryDish(
         let shouldSendLargeMessage = false
 
         values.forEach(value => {
-          const privateRoom = privateRooms[value[0].toLowerCase()]
-          if (!privateRoom.started) {
-            if (!privateRoom.pendingNotifications) {
-              privateRoom.pendingNotifications = []
+          console.log(value[0].toLowerCase())
+          if (!privateRooms[value[0].toLowerCase()].started) {
+            if (!privateRooms[value[0].toLowerCase()].pendingNotifications) {
+              privateRooms[value[0].toLowerCase()].pendingNotifications = []
             }
-            privateRoom.pendingNotifications.push(roomId)
+            privateRooms[value[0].toLowerCase()].pendingNotifications.push(
+              Math.abs(roomId)
+            )
             shouldSendLargeMessage = true
           } else {
             const msg = dish_notification_msgs[Math.abs(roomId)]
@@ -319,7 +322,9 @@ function tryDish(
               )
             }
           }
-          privateRoom.lastDishMonth = new Date().getMonth()
+          privateRooms[
+            value[0].toLowerCase()
+          ].lastDishMonth = new Date().getMonth()
         })
 
         const users = values.map(e => e[0])
