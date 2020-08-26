@@ -36,12 +36,25 @@ module.exports.sheet_tab_name = 'PraiseBot!A1:F1'
 
 module.exports.dish_notification_msgs = {
   // CommonsStack
-  1001201746023: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise may turn into CSTK tokens at the end of the month, giving you reputation as part of our Trusted Seed.\
-  \n\nTo be eligible to receive tokens, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you your tokens on the address you mention in the form. If you already applied, no need to do this again!\
+  1001201746023: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise can give you reputation in our Trusted Seed.\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you CSTK tokens on the address you mention in the form. If you already applied, no need to do this again!\
   \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Commons Stack!',
   // CSDEV
-  1001383369347: 'Come on guys, write your custom blurb already',
+  1001383369347: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/csddev). This Praise can give you reputation in our Trusted Seed.\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you CSTK tokens on the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the Commons Stack!',
+  // TE Commons
+  1001211489679: 'Congratulations! You’ve been dished Praise! Your contribution to the TE Commons has been recognized [in our Telegram channel](https://t.me/tecommons). This Praise can give you Cred in our TE Commons Cultural Build, and Cred will become TE Commons Tokens once the TE Commons Hatches!.\
+  \n\nYou can learn more about Cred on our [in our Telegram channel](https://t.me/tecommons) and on our soon to be launched Medium. :-D\
+  \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the TE Commons!',
+   // Currency Potluck
+  1001383369347: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise can give you reputation in our Trusted Seed.\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you CSTK tokens on the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the Commons Stack!', 
   // CCA
   919179467: '🌟 Dear contributor to the Community Currency Alliance 🌟\
 \n\n👏 Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which is a personal non-transferable acknowledgment token powered by the Commons Stack. In the future, we are hoping to use a dedicated community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or how you want to get involved. \
