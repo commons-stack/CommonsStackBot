@@ -19,8 +19,8 @@ module.exports.dishers = [
   `Gfriis`,
   `JessicaZartler`,
   `Ajmaq`,
-  `solsista`, 
   `akrtws`,
+  `solsista`,
 ]
 
 // Allowed point types
