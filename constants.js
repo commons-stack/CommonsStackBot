@@ -10,6 +10,7 @@ module.exports.dishers = [
   'krrisis',
   'willruddick',
   'GriffGreen',
+  'vntrp',
   'frederikbolding',
   'phil_h',
   'lkngtn',
