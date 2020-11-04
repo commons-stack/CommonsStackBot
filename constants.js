@@ -59,6 +59,11 @@ module.exports.dish_notification_msgs = {
   \n\nYou can learn more about Impact Hours on our [in our Telegram channel](https://t.me/tecommons) and on our soon to be launched Medium. :-D\
   \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the TE Commons!',
+  // TE Praise Room
+  1001382455209: 'Congratulations! You’ve been dished Praise! Your contribution to the TE Commons has been recognized [in our Telegram channel](https://t.me/tecommons). This Praise becomes TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TE Commons Tokens once the TE Commons Hatches!.\
+  \n\nYou can learn more about Impact Hours on our [in our Telegram channel](https://t.me/tecommons) and on our soon to be launched Medium. :-D\
+  \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the TE Commons!',
   // Currency Potluck
   1001181521735: 'Congratulations! You’ve been dished Praise! Your contribution to our Potluck Experiment has been recognized in our Telegram channel. The use of Praise is still being expermented with, if you have ideas, DM @griffgreen.\
   \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
