@@ -55,13 +55,13 @@ module.exports.dish_notification_msgs = {
   \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Commons Stack!',
   // TE Commons
-  1001211489679: 'Congratulations! You’ve been dished Praise! Your contribution to the TE Commons has been recognized [in our Telegram channel](https://t.me/tecommons). This Praise becomes TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TE Commons Tokens once the TE Commons Hatches!.\
-  \n\nYou can learn more about Impact Hours on our [in our Telegram channel](https://t.me/tecommons) and on our soon to be launched Medium. :-D\
+  1001211489679: 'Congratulations! You’ve been dished Praise! Your contribution to the TE Commons has been recognized [in our Telegram channel](https://t.me/tecommons). This Praise will become TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TEC Tokens once the TE Commons Hatches!.\
+  \n\nYou can learn more about Impact Hours on our [Medium Post about it](https://medium.com/token-engineering-commons/how-to-earn-tec-tokens-now-an-inside-look-at-impact-hours-7d93043b739d). :-D\
   \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the TE Commons!',
   // TE Praise Room
-  1001382455209: 'Congratulations! You’ve been dished Praise! Your contribution to the TE Commons has been recognized [in our Telegram channel](https://t.me/tecommons). This Praise becomes TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TE Commons Tokens once the TE Commons Hatches!.\
-  \n\nYou can learn more about Impact Hours on our [in our Telegram channel](https://t.me/tecommons) and on our soon to be launched Medium. :-D\
+  1001382455209: 'Congratulations! You’ve been dished Praise! Your contribution to the TE Commons has been recognized [in our Telegram channel](https://t.me/tepraise). This Praise will become TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TEC Tokens once the TE Commons Hatches!.\
+  \n\nYou can learn more about Impact Hours on our [Medium Post about it](https://medium.com/token-engineering-commons/how-to-earn-tec-tokens-now-an-inside-look-at-impact-hours-7d93043b739d). :-D\
   \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the TE Commons!',
   // Currency Potluck
