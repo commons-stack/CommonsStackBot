@@ -20,6 +20,7 @@ module.exports.dishers = [
   'chriscyber',
   'zeptimusQ',
   'phil_h',
+  'rubenrussel7',
   'Tam2140',
   'lkngtn',
   'knobsDAO',
