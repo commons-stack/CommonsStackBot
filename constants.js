@@ -19,6 +19,7 @@ module.exports.dishers = [
   'Krisjones',
   'JuankBell',
   'chriscyber',
+  'freedumbs00',
   'zeptimusQ',
   'phil_h',
   'rubenrussel7',
