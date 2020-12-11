@@ -38,6 +38,7 @@ module.exports.dishers = [
   'fabianvb',
   'FabiMol',
   'freedumbs00',
+  'MerlinEgalite',
   'Anthonyoliai',
   'vivszaid',
   'paulo_c2d',
