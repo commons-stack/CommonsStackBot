@@ -1,7 +1,6 @@
 // Allowed users that can dish out points
 // module.exports.userList = [
 // ]
-
 // Dishers
 module.exports.dishers = [
   'loie_giveth',
@@ -10,6 +9,7 @@ module.exports.dishers = [
   'krrisis',
   'danlessa',
   'Alexholman',
+  'Sponnet2',
   'daithiC',
   'willruddick',
   'GriffGreen',
