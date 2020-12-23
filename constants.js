@@ -8,6 +8,7 @@ module.exports.dishers = [
   'mzargham',
   'krrisis',
   'danlessa',
+  'geleeroyale',
   'Alexholman',
   'Sponnet2',
   'daithiC',
