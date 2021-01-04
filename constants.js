@@ -24,6 +24,7 @@ module.exports.dishers = [
   'chriscyber',
   'freedumbs00',
   'zeptimusQ',
+  'naynaysoo',
   'phil_h',
   'rubenrussel7',
   'Tam2140',
