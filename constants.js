@@ -96,6 +96,11 @@ module.exports.dish_notification_msgs = {
   \n\nYou can learn more about Impact Hours on our [Medium Post about it](https://medium.com/token-engineering-commons/how-to-earn-tec-tokens-now-an-inside-look-at-impact-hours-7d93043b739d). :-D\
   \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Gardens Swarm!',
+  // cadCAD
+  1001400393954: 'Congratulations! You’ve been dished Praise! Your contribution to the 1hive Gardens Swarm has been recognized [in our Telegram channel](https://t.me/cadCAD_org). This Praise will become TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TEC Tokens once the TE Commons Hatches!.\
+  \n\nYou can learn more about Impact Hours on our [Medium Post about it](https://medium.com/token-engineering-commons/how-to-earn-tec-tokens-now-an-inside-look-at-impact-hours-7d93043b739d). :-D\
+  \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the cadCAD and the emerging field of Token Engineering!',
   // Currency Potluck
   1001181521735: 'Congratulations! You’ve been dished Praise! Your contribution to our Potluck Experiment has been recognized in our Telegram channel. The use of Praise is still being expermented with, if you have ideas, DM @griffgreen.\
   \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
