@@ -50,6 +50,8 @@ module.exports.dishers = [
   'vivszaid',
   'paulo_c2d',
   'fiorebotta',
+  'Laurenluz',
+  'danibelle',
   'markop',
   'fvigevani',
   'willjgriff',
