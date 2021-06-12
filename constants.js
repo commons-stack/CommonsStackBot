@@ -3,6 +3,7 @@
 // ]
 // Dishers
 module.exports.dishers = [
+  'randomshinichi',
   'loie_giveth',
   'jeffemmett',
   'mzargham',
