@@ -7,6 +7,7 @@ module.exports.dishers = [
   'randomshinichi',
   'loie_giveth',
   'jeffemmett',
+  'bradleyc',
   'mzargham',
   'krrisis',
   'metaverde',
