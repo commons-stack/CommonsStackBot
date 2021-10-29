@@ -67,6 +67,13 @@ module.exports.dishers = [
   `Ajmaq`,
   `akrtws`,
   `solsista`,
+  `pKrepe`,
+  `divine_comedian`,
+  `hanners717`,
+  `Vyvy_vi`,
+  `freshelle`,
+  `mosaeedi1`,
+  `kristoferkristofer`,
 ]
 
 // Allowed point types
@@ -82,30 +89,31 @@ module.exports.sheet_id =
     : '1p6_zA792aeKnEJ2iudIjeVFmPTFgnj-znoH6mQFzpw8'
 module.exports.sheet_tab_name = 'PraiseBot!A1:F1'
 
+// To get the Room ID for set up, use the command !roomid in the room and remember to give the Praisebot admin permissions
 module.exports.dish_notification_msgs = {
   // CommonsStack
   1001201746023: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/CommonsStack). This Praise can give you reputation in our Trusted Seed.\
-  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you CSTK tokens on the address you mention in the form. If you already applied, no need to do this again!\
-  \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted and have activated your membership we will be increasing your CSTK Score using the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise and the CSTK Score in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Commons Stack!',
   // CSDEV
   1001383369347: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/csddev). This Praise can give you reputation in our Trusted Seed.\
-  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you CSTK tokens on the address you mention in the form. If you already applied, no need to do this again!\
-  \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted and have activated your membership we will be increasing your CSTK Score using the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise and the CSTK Score in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Commons Stack!',
   // TE Commons
   1001211489679: '👏 Congratulations! You’ve been Praised! 👏 \n\nWant to know what you’ve been praised for? You will find that in our TE Praise Telegram channel (https://t.me/tepraise). \n\nThis recognition of your contribution to the token engineering community will be rewarded with $TEC tokens following the TEC Commons Upgrade. You can learn more about our reward system in this [Forum post](https://forum.tecommons.org/t/reward-system-moving-forward/570). 😊 \n\nIf you are a member of the Commons Stack Trusted Seed, you may also receive an increase in $CSTK score. Find out more about that in this [article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61). \n\nThank you for supporting the [Token Engineering Commons](https://tecommons.org/)!',
   // TE Praise Room
   1001382455209: '👏 Congratulations! You’ve been Praised! 👏 \n\nWant to know what you’ve been praised for? You will find that in our TE Praise Telegram channel (https://t.me/tepraise). \n\nThis recognition of your contribution to the token engineering community will be rewarded with $TEC tokens following the TEC Commons Upgrade. You can learn more about our reward system in this [Forum post](https://forum.tecommons.org/t/reward-system-moving-forward/570). 😊 \n\nIf you are a member of the Commons Stack Trusted Seed, you may also receive an increase in $CSTK score. Find out more about that in this [article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61). \n\nThank you for supporting the [Token Engineering Commons](https://tecommons.org/)!',
   // Gardens Swarm Room
-  1001457753760: 'Congratulations! You’ve been dished Praise! Your contribution to the 1hive Gardens Swarm has been recognized [in our Telegram channel](https://t.me/joinchat/HGrjjVbjjqA3MOEOOHV83g). This Praise will become TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TEC Tokens once the TE Commons Hatches!.\
-  \n\nYou can learn more about Impact Hours on our [Medium Post about it](https://medium.com/token-engineering-commons/how-to-earn-tec-tokens-now-an-inside-look-at-impact-hours-7d93043b739d). :-D\
-  \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  1001457753760: 'Congratulations! You’ve been dished Praise! Your contribution to the 1hive Gardens Swarm has been recognized [in our Telegram channel](https://t.me/joinchat/HGrjjVbjjqA3MOEOOHV83g).This Praise can give you reputation in our Trusted Seed.\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted and have activated your membership we will be increasing your CSTK Score using the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise and the CSTK Score in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Gardens Swarm!',
   // cadCAD
-  1001400393954: 'Congratulations! You’ve been dished Praise! Your contribution to the cadCAD community has been recognized [in our Telegram channel](https://t.me/cadCAD_org). This Praise will become TE Commons Impact Hours representing your impact on the Cultural Build, and TEC Impact Hours will become TEC Tokens once the TE Commons Hatches!.\
-  \n\nYou can learn more about Impact Hours on our [Medium Post about it](https://medium.com/token-engineering-commons/how-to-earn-tec-tokens-now-an-inside-look-at-impact-hours-7d93043b739d). :-D\
-  \n\nYou might also receive CSTK Tokens, which you can read more about in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  1001400393954: 'Congratulations! You’ve been dished Praise! Your contribution to the cadCAD community has been recognized [in our Telegram channel](https://t.me/cadCAD_org). This Praise can give you reputation in our Trusted Seed.\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted and have activated your membership we will be increasing your CSTK Score using the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise and the CSTK Score in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting cadCAD and the emerging field of Token Engineering!',
   // Currency Potluck
   1001181521735: 'Congratulations! You’ve been dished Praise! Your contribution to our Potluck Experiment has been recognized in our Telegram channel. The use of Praise is still being expermented with, if you have ideas, DM @griffgreen.\
@@ -113,9 +121,14 @@ module.exports.dish_notification_msgs = {
   \n\n**Thank you** for supporting the Potluck!',
   // Swiss Membership DApp
   475705318: 'Congratulations! You’ve been dished Praise! Your contribution to the Commons Stack has been recognized [in our Telegram channel](https://t.me/csddev). This Praise can give you reputation in our Trusted Seed.\
-  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted we will be sending you CSTK tokens on the address you mention in the form. If you already applied, no need to do this again!\
-  \n\nYou can learn more about Praise on our [wiki](https://wiki.commonsstack.org/contributors-guide) and the CSTK Token in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted and have activated your membership we will be increasing your CSTK Score using the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise and the CSTK Score in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
   \n\n**Thank you** for supporting the Commons Stack!',
+  // General Magic
+  517357430: 'Congratulations! You’ve been dished Praise! Your General Magic has been recognized in the General Magic Telegram channel. This Praise can give you reputation in our Trusted Seed.\
+  \n\nTo be eligible, you must be a member of the Commons Stack Trusted Seed. To apply, fill out the form [here](http://commonsstack.org/apply). Once you are accepted and have activated your membership we will be increasing your CSTK Score using the address you mention in the form. If you already applied, no need to do this again!\
+  \n\nYou can learn more about Praise and the CSTK Score in [this article](https://medium.com/commonsstack/cstk-the-token-of-the-commons-stack-trusted-seed-931978625c61).\
+  \n\n**Thank you** for supporting the Commons Stack, Giveth and the Blockchain4good movement!',
   // CCA
   919179467: '🌟 Dear contributor to the Community Currency Alliance 🌟\
   \n\n👏 Congratulations! Your valuable contribution to the CCA has been acknowledged, and you\'ve just received "Praise" which is a personal non-transferable acknowledgment token powered by the Commons Stack. In the future, we are hoping to use a dedicated community currency to spark collaboration between the different projects in the Community Currency Alliance. Please let us know if you have any ideas for the CCA or how you want to get involved. \
